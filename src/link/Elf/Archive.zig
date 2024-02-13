@@ -22,6 +22,7 @@ pub fn parse(self: *Archive, elf_file: *Elf, path: []const u8, handle_index: Fil
     const size = (try handle.stat()).size;
 
     const reader = handle.reader();
+    try handle.seekTo(0);
     _ = try reader.readBytesNoEof(elf.ARMAG.len);
 
     var pos: usize = elf.ARMAG.len;
